@@ -13,6 +13,7 @@ jobs:
       - uses: conda-incubator/setup-miniconda@v2
         with:
           environment-file: ./environment.yml
+          activate-environment: Intro2GithubActions
           auto-activate-base: false
       - run: pytest
       - run: echo "🍏 This job's status is ${{ job.status }}."
