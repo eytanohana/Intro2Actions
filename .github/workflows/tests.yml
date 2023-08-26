@@ -1,0 +1,13 @@
+name: Run Tests
+run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
+on: [push]
+jobs:
+  Explore-GitHub-Actions:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v3
+      - run: echo "💡 The ${{ github.repository }} repository has been cloned to the runner."
+      - run: conda env create --file enironment.yml
+      - run: pytest
+      - run: echo "🍏 This job's status is ${{ job.status }}."
