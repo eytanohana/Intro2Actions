@@ -18,3 +18,7 @@ def test_times():
 def test_divide():
     x = 20 / 5
     assert x == 4
+
+
+def test_bad():
+    assert 4 == 5
