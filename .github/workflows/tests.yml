@@ -2,14 +2,18 @@ name: Run Tests
 run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
 on: [push]
 jobs:
-  Explore-GitHub-Actions:
+  Testing-Pipeline:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: bash -el {0}
     steps:
       - name: Check out repository code
-        uses: actions/checkout@v3
+      - uses: actions/checkout@v3
       - run: echo "💡 The ${{ github.repository }} repository has been cloned to the runner."
-      - run: conda init bash
-      - run: conda env create --file environment.yml
-      - run: source activate Intro2GithubActions
+      - uses: conda-incubator/setup-miniconda@v2
+      with:
+        environment-file: ./environment.yml
+        auto-activate-base: false
       - run: pytest
       - run: echo "🍏 This job's status is ${{ job.status }}."
