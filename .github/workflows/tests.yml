@@ -17,5 +17,5 @@ jobs:
           activate-environment: Intro2GithubActions
           auto-activate-base: false
       - run: echo $(which python)
-      - run: pytest
+      - run: pytest -v
       - run: echo "🍏 This job's status is ${{ job.status }}."
