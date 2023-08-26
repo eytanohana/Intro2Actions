@@ -9,11 +9,13 @@ jobs:
         shell: bash -el {0}
     steps:
       - uses: actions/checkout@v3
+        name: checkout repo
       - run: echo "💡 The ${{ github.repository }} repository has been cloned to the runner."
       - uses: conda-incubator/setup-miniconda@v2
         with:
           environment-file: ./environment.yml
           activate-environment: Intro2GithubActions
           auto-activate-base: false
+      - run: echo $(which python)
       - run: pytest
       - run: echo "🍏 This job's status is ${{ job.status }}."
