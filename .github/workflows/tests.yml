@@ -10,6 +10,6 @@ jobs:
       - run: echo "💡 The ${{ github.repository }} repository has been cloned to the runner."
       - run: conda init bash
       - run: conda env create --file environment.yml
-      - run: conda activate Intro2GithubActions
+      - run: source activate Intro2GithubActions
       - run: pytest
       - run: echo "🍏 This job's status is ${{ job.status }}."
