@@ -27,7 +27,8 @@ jobs:
     - name: Build and Tag Image
       env:
         TAG: ${{ steps.new_tag.outputs.TAG }}
-      run: docker build . --file Dockerfile \
+      run: |
+        docker build . --file Dockerfile \
           --tag $IMAGE_NAME:latest \
           --tag $IMAGE_NAME:$TAG \
           --build-arg DOCKER_TAG=$TAG
