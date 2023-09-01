@@ -14,26 +14,37 @@ jobs:
   build-image:
 
     runs-on: ubuntu-latest
-    env:
-      TAG: ${{ steps.new_tag.outputs.TAG }}
 
     steps:
+
     - name: Checkout
       uses: actions/checkout@v3
+
     - name: Create tag
       id: new_tag
-      run: |
-        echo "TAG=$(date +%Y.%m.%d_%H.%M.%S)" >> "$GITHUB_OUTPUT"
-        echo $TAG
+      run: echo "TAG=$(date +%Y.%m.%d_%H.%M.%S)" >> "$GITHUB_OUTPUT"
+
     - name: Build and Tag Image
-      run: |
-        echo "tag is: $TAG"
-        docker build . --file Dockerfile \
+      env:
+        TAG: ${{ steps.new_tag.outputs.TAG }}
+      run: docker build . --file Dockerfile \
           --tag $IMAGE_NAME:latest \
           --tag $IMAGE_NAME:$TAG \
           --build-arg DOCKER_TAG=$TAG
   
     - name: List images
       run: docker images
+
+
+    - name: Docker login
+      run: docker login -u eohana98 -p ${{ secrets.DOCKERHUB_ACCESS_TOKEN }}
+
+    - name: Docker push
+      env:
+        TAG: ${{ steps.new_tag.outputs.TAG }}
+      run: docker push $IMAGE_NAME:$TAG $IMAGE_NAME:latest
+
+
+
 
 
