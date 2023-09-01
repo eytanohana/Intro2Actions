@@ -23,7 +23,7 @@ jobs:
       run: echo "tag=$(date +%Y.%m.%d.%H.%M)" >> $GITHUB_OUTPUT
     - name: Build and Tag Image
       env:
-        TAG: ${{ steps.new_tag.tag }}
+        TAG: ${{ steps.new_tag.output.tag }}
       run: |
         echo $TAG
         docker build . --file Dockerfile \
