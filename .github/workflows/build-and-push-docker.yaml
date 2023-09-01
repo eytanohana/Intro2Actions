@@ -20,12 +20,12 @@ jobs:
       uses: actions/checkout@v3
     - name: Create tag
       id: new_tag
-      run: echo "tag=$(date +%Y.%m.%d.%H.%M)" >> "$GITHUB_OUTPUT"
+      run: echo "TAG=$(date +%Y.%m.%d_%H.%M.%S)" >> "$GITHUB_OUTPUT"
     - name: Build and Tag Image
       env:
-        TAG: ${{ steps.new_tag.output.tag }}
+        TAG: ${{ steps.new_tag.output.TAG }}
       run: |
-        echo $TAG
+        echo "tag is: $TAG"
         docker build . --file Dockerfile \
           --tag $IMAGE_NAME:latest \
           --tag $IMAGE_NAME:$TAG \
