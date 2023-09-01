@@ -22,3 +22,6 @@ jobs:
       run: |
         tag=$(date +%Y.%m.%d.%H.%M)
         docker build . --file Dockerfile --tag $IMAGE_NAME:$tag --tag $IMAGE_NAME:$tag
+    - name: List Images
+      run: docker images
+
