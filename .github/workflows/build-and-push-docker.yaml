@@ -25,7 +25,7 @@ jobs:
         echo $TAG
     - name: Build and Tag Image
       env:
-        TAG: ${{ steps.new_tag.output.TAG }}
+        TAG: ${{ steps.new_tag.outputs.TAG }}
       run: |
         echo "tag is: $TAG"
         docker build . --file Dockerfile \
