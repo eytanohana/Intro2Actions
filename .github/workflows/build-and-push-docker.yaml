@@ -8,7 +8,6 @@ on:
 
 env:
   IMAGE_NAME: eohana98/actions-intro
-  DOCKER_TAR: docker-out.tar
 
 jobs:
 
@@ -32,7 +31,7 @@ jobs:
           --tag $IMAGE_NAME:$TAG \
           --build-arg DOCKER_TAG=$TAG
   
-      - name: List images
-        run: docker images
+    - name: List images
+      run: docker images
 
 
