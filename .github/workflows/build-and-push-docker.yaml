@@ -16,8 +16,9 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v3
-    - name: Create Tag
-      run: tag=$(date +%Y.%m.%d.%H.%M)
-    - name: Build Image
-      run: docker build . --file Dockerfile --tag $IMAGE_NAME:$tag --tag $IMAGE_NAME:$tag
+    - name: Checkout
+      uses: actions/checkout@v3
+    - name: Build and Tag Image
+      run: |
+        tag=$(date +%Y.%m.%d.%H.%M)
+        docker build . --file Dockerfile --tag $IMAGE_NAME:$tag --tag $IMAGE_NAME:$tag
