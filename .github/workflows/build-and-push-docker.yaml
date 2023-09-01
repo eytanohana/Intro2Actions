@@ -43,7 +43,9 @@ jobs:
     - name: Docker push
       env:
         TAG: ${{ steps.new_tag.outputs.TAG }}
-      run: docker push $IMAGE_NAME:$TAG $IMAGE_NAME:latest
+      run: |
+        docker push $IMAGE_NAME:$TAG
+        docker push $IMAGE_NAME:latest
 
 
 
