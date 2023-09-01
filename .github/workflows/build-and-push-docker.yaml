@@ -19,29 +19,17 @@ jobs:
     steps:
     - name: Checkout
       uses: actions/checkout@v3
+    - name: Create tag
+      id: tag
+      run: tag=$(date +%Y.%m.%d.%H.%M)
     - name: Build and Tag Image
       run: |
-        tag=$(date +%Y.%m.%d.%H.%M)
-        docker build . --file Dockerfile --tag $IMAGE_NAME:$tag --tag $IMAGE_NAME:$tag --output type=tar,dest=/tmp/DOCKER_TAR.tar
-    - name: Upload artifact
-      uses: actions/upload-artifact@v3
-      with:
-        name: docker-image
-        path: /tmp/DOCKER_TAR.tar
+        echo ${{ steps.tag.tag }}
+        docker build . --file Dockerfile \
+          --tag $IMAGE_NAME:latest --tag $IMAGE_NAME:${{ steps.tag.tag }} \
+          --build-arg DOCKER_TAG=$tag
   
-  push-image:
 
-    runs-on: ubuntu-latest
-    needs: build-image
-
-    steps:
-      - name: Download artifact
-        uses: actions/download-artifact@v3
-        with:
-          name: docker-image
-
-      - name: Load image from artifact
-        run: docker load --input /tmp/DOCKER_TAR.tar
 
       - name: List images
         run: docker images
