@@ -27,7 +27,7 @@ jobs:
       run: |
         echo $TAG
         docker build . --file Dockerfile \
-          --tag $IMAGE_NAME:latest 
+          --tag $IMAGE_NAME:latest \
           --tag $IMAGE_NAME:$TAG \
           --build-arg DOCKER_TAG=$TAG
   
