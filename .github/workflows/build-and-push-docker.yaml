@@ -22,12 +22,12 @@ jobs:
     - name: Build and Tag Image
       run: |
         tag=$(date +%Y.%m.%d.%H.%M)
-        docker build . --file Dockerfile --tag $IMAGE_NAME:$tag --tag $IMAGE_NAME:$tag --output type=tar,dest=$DOCKER_TAR
+        docker build . --file Dockerfile --tag $IMAGE_NAME:$tag --tag $IMAGE_NAME:$tag --output type=tar,dest=DOCKER_TAR.tar
     - name: Upload artifact
       uses: actions/upload-artifact@v3
       with:
         name: docker-image
-        path: $DOCKER_TAR
+        path: DOCKER_TAR.tar
   
   push-image:
 
@@ -41,7 +41,7 @@ jobs:
           name: docker-image
 
       - name: Load image from artifact
-        run: docker load --input $DOCKER_TAR
+        run: docker load --input DOCKER_TAR.tar
 
       - name: List images
         run: docker images
