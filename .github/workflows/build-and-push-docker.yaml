@@ -8,6 +8,7 @@ on:
 
 env:
   IMAGE_NAME: eohana98/actions-intro
+  DOCKER_TAR: docker-out.tar
 
 jobs:
 
@@ -21,7 +22,12 @@ jobs:
     - name: Build and Tag Image
       run: |
         tag=$(date +%Y.%m.%d.%H.%M)
-        docker build . --file Dockerfile --tag $IMAGE_NAME:$tag --tag $IMAGE_NAME:$tag
+        docker build . --file Dockerfile --tag $IMAGE_NAME:$tag --tag $IMAGE_NAME:$tag --output type=tar,dest=$DOCKER_TAR
+    - name: Upload artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: docker-image
+        path: $DOCKER_TAR
   
   push-image:
 
@@ -29,6 +35,14 @@ jobs:
     needs: build-image
 
     steps:
+      - name: Download artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: docker-image
+
+      - name: Load image from artifact
+        run: docker load --input $DOCKER_TAR
+
       - name: List images
         run: docker images
 
