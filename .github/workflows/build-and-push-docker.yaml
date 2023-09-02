@@ -33,6 +33,9 @@ jobs:
           --tag $IMAGE_NAME:$TAG \
           --build-arg DOCKER_TAG=$TAG
 
+    - name: Test
+      run: docker run --entrypoint pytest $IMAGE_NAME:latest
+
     - name: Docker login
       uses: docker/login-action@v2
       with:
