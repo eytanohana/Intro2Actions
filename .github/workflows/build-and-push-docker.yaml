@@ -53,6 +53,7 @@ jobs:
   uv-example:
     name: UV Example
     runs-on: ubuntu-latest
+    needs: build-image
     strategy:
       matrix:
         python-version: ["3.10", "3.11", "3.12"] # Define the Python versions to test against
