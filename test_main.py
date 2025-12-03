@@ -1,10 +1,7 @@
 from main import add, subtract, mulitply, divide
-import sys
 
 
 def test_add():
-    if sys.version_info.minor == 11:
-        raise ValueError("AHHH I FAILED!!")
     assert add(5, 5) == 10, 'Add failed'
 
 
