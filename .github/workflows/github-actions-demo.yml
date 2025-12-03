@@ -24,4 +24,4 @@ jobs:
         run: |
           ls ${{ github.workspace }}
 
-      - run: echo "this jobs status is ${{ job.status }}
+      - run: echo "this jobs status is ${{ job.status }}."
