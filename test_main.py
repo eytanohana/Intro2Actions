@@ -15,6 +15,7 @@ def test_subtract():
 def test_multiply():
     assert mulitply(6, 2) == 12, 'Multiply failed'
 
+
 def test_divide():
     assert divide(28, 7) == 4, 'Divide failed'
 
