@@ -51,7 +51,7 @@ jobs:
 
 
   uv-example:
-    name: python
+    name: UV Example
     runs-on: ubuntu-latest
 
     steps:
@@ -66,3 +66,6 @@ jobs:
         uses: astral-sh/setup-uv@v7
         with:
           version: "0.9.15"
+
+      - name: "Run Tests"
+        run: uv run pytest
