@@ -3,18 +3,22 @@ import os
 
 
 def add(a, b):
+    """add"""
     return a + b
 
 
 def subtract(a, b):
+    """subtract"""
     return a - b
 
 
 def mulitply(a, b):
+    """multiply"""
     return a * b
 
 
 def divide(a, b):
+    """divide"""
     return a / b
 
 
