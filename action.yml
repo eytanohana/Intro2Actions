@@ -34,4 +34,5 @@ runs:
         git config --global user.name "actions-bot"
         git add result.txt
         git commit -m "committed result"
+        git push
       shell: bash
