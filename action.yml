@@ -30,6 +30,8 @@ runs:
       id: commit-results
       run: |
         echo "result is ${{ steps.get-square.outputs.num_squared }}" > result.txt
+        git config --global user.email "actions-bot"
+        git config --global user.name "actions-bot"
         git add result.txt
         git commit -m "committed result"
       shell: bash
