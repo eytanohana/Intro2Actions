@@ -38,3 +38,5 @@ runs:
 
     - name: GitHub Push
       uses: ad-m/github-push-action@v1.0.0
+      with:
+        branch: ${{ github.head_ref }}
