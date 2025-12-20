@@ -32,6 +32,6 @@ jobs:
         # or use a released Github Action
         # uses: shipyard/github-action/fetch-shipyard-env@1.0.0
         with:
-          num: 11
+          num: 12
       - name: Print the square
         run: echo "${{ steps.get_square.outputs.num_squared }}"
