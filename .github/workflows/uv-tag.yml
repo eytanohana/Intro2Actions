@@ -29,7 +29,7 @@ jobs:
 
       - name: checking my action
         id: foo
-        uses: eytanohana/uv-release-tools@bdc7827dd4ac996ee51ed157da6185e08672667c
+        uses: eytanohana/uv-release-tools@28b596f41974f061dbb12b883540c383b987593a
         with:
           mode: "validate"
 
