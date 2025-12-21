@@ -34,4 +34,7 @@ jobs:
         uses: eytanohana/uv-release-tools@d4610e84630b29a55813d98e0512a06d184964c5
         with:
           mode: "validate"
+      - name: check outputs
+        run:
+          echo "is_valid: ${{steps.foo.outputs.valid}}, expected_bump: ${{ steps.foo.outputs.expected_bump }}, actual_bump: ${{ steps.foo.outputs.actual_bump }} "
 
