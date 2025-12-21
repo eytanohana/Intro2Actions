@@ -35,6 +35,7 @@ jobs:
         with:
           mode: "validate"
       - name: check outputs
-        run:
-          echo "is_valid: ${{steps.foo.outputs.valid}}, expected_bump: ${{ steps.foo.outputs.expected_bump }}, actual_bump: ${{ steps.foo.outputs.actual_bump }} "
+        run: |
+          echo "is_valid: ${{ steps.foo.outputs.valid }} , expected_bump: ${{ steps.foo.outputs.expected_bump }}, actual_bump: ${{ steps.foo.outputs.actual_bump }} "
+
 
