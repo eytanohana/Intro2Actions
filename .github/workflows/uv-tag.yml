@@ -18,6 +18,8 @@ jobs:
 
       - name: Check out Repo Code
         uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
 
       - run: echo "the ${{ github.repository }} repo has been cloned to the runner."
 
