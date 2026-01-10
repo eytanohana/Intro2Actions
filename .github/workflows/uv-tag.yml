@@ -31,11 +31,11 @@ jobs:
 
       - name: checking my action
         id: foo
-        uses: eytanohana/uv-release-tools@8edf50920933f73dc7d7a18bdeb8da5c0a1ffc34
+        uses: eytanohana/uv-release-tools@bd55fa425a5eb0a63f7032e09d3ca6849535b0d9
         with:
           mode: "validate"
       - name: check outputs
         run: |
-          echo "is_valid: ${{ steps.foo.outputs.valid }} , expected_bump: ${{ steps.foo.outputs.expected_bump }}, actual_bump: ${{ steps.foo.outputs.actual_bump }} "
+          echo "is_valid: ${{ steps.foo.outputs.valid }} , release type: ${{ steps.foo.outputs.release_type }} "
 
 
