@@ -32,6 +32,10 @@ def root(a, b):
     return a ** (1 / b)
 
 
+def floor(a):
+    return int(a)
+
+
 
 if __name__ == "__main__":
     print(f'System path is:      {sys.path}')
