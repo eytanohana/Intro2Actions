@@ -22,6 +22,9 @@ jobs:
       - name: Validate labels or create release
         id: action
         uses: eytanohana/uv-release-tools@main
+        with:
+          tag_prefix: "version_"
+
         # Action auto-detects context:
         # - PR open/update → validates labels
         # - PR merged → bumps version and creates tag
