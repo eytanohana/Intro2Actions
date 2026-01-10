@@ -1,4 +1,4 @@
-from main import add, subtract, mulitply, divide
+from main import add, subtract, mulitply, divide, pow
 
 
 def test_add():
@@ -16,3 +16,6 @@ def test_multiply():
 def test_divide():
     assert divide(28, 7) == 4, 'Divide failed'
 
+
+def test_power():
+    assert pow(2, 3) == 8, 'Power failed'
