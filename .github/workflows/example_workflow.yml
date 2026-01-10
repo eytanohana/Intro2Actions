@@ -2,45 +2,16 @@ name: uv release tools
 
 on:
   pull_request:
-    branches: [ "main", "master" ]
-    types: [opened, synchronize, labeled, unlabeled]
-  push:
-    branches: [ "main", "master" ]
+    branches: [ "main" ]
+    types: [opened, synchronize, labeled, unlabeled, closed]
 
 jobs:
-  # Validate release labels on PRs
-  validate:
-    runs-on: ubuntu-latest
-    if: github.event_name == 'pull_request'
-    permissions:
-      contents: read
-      pull-requests: read
-    
-    steps:
-      - name: Check out Repo Code
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-
-      - name: Validate release labels
-        id: validate
-        uses: eytanohana/uv-release-tools@6f533f3cbe6cf1d067dcc122131b9d056614ba51
-        with:
-          mode: "validate"
-      
-      - name: Check outputs
-        run: |
-          echo "is_valid: ${{ steps.validate.outputs.valid }}"
-          echo "release_type: ${{ steps.validate.outputs.release_type }}"
-
-  # Bump version and create tag on merge
   release:
     runs-on: ubuntu-latest
-    if: github.event_name == 'push'
     permissions:
       contents: write
       pull-requests: read
-    
+
     steps:
       - name: Check out Repo Code
         uses: actions/checkout@v4
@@ -48,17 +19,19 @@ jobs:
           fetch-depth: 0
           token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Bump version and create release
-        id: release
-        uses: eytanohana/uv-release-tools@6f533f3cbe6cf1d067dcc122131b9d056614ba51
-        with:
-          mode: "release"
-      
+      - name: Validate labels or create release
+        id: action
+        uses: eytanohana/uv-release-tools@main
+        # Action auto-detects context:
+        # - PR open/update → validates labels
+        # - PR merged → bumps version and creates tag
+
       - name: Check outputs
         run: |
-          echo "version: ${{ steps.release.outputs.version }}"
-          echo "previous_version: ${{ steps.release.outputs.previous_version }}"
-          echo "release_type: ${{ steps.release.outputs.release_type }}"
-          echo "tag: ${{ steps.release.outputs.tag }}"
-          echo "created_tag: ${{ steps.release.outputs.created_tag }}"
-          echo "committed: ${{ steps.release.outputs.committed }}"
+          echo "valid: ${{ steps.action.outputs.valid }}"
+          echo "release_type: ${{ steps.action.outputs.release_type }}"
+          echo "version: ${{ steps.action.outputs.version }}"
+          echo "previous_version: ${{ steps.action.outputs.previous_version }}"
+          echo "tag: ${{ steps.action.outputs.tag }}"
+          echo "created_tag: ${{ steps.action.outputs.created_tag }}"
+          echo "committed: ${{ steps.action.outputs.committed }}"
