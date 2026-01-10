@@ -22,6 +22,11 @@ def divide(a, b):
     return a / b
 
 
+def pow(a, b):
+    """power"""
+    return a ** b
+
+
 
 if __name__ == "__main__":
     print(f'System path is:      {sys.path}')
