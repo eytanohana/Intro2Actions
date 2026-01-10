@@ -27,6 +27,11 @@ def pow(a, b):
     return a ** b
 
 
+def root(a, b):
+    """root"""
+    return a ** (1 / b)
+
+
 
 if __name__ == "__main__":
     print(f'System path is:      {sys.path}')
