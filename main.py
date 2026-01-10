@@ -42,6 +42,10 @@ def ceil(a):
     return int(a + 1)
 
 
+def plus_one(a):
+    return a + 1
+
+
 if __name__ == "__main__":
     print(f'System path is:      {sys.path}')
     print(f'Python version is:   {sys.version}')
