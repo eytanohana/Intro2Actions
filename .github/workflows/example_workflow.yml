@@ -16,12 +16,11 @@ jobs:
       - name: Check out Repo Code
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0
           token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Validate labels or create release
         id: action
-        uses: eytanohana/uv-release-tools@main
+        uses: eytanohana/uv-release-tools@v1
         with:
           tag_prefix: "version_"
 
