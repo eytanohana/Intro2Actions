@@ -2,6 +2,7 @@ name: uv tag demo
 on:
   pull_request:
     branches: [ "main" ]
+    types: [opened, synchronize, labeled, unlabeled]
 
 jobs:
 
