@@ -36,6 +36,11 @@ def floor(a):
     return int(a)
 
 
+def ceil(a):
+    if a == int(a):
+        return a
+    return int(a + 1)
+
 
 if __name__ == "__main__":
     print(f'System path is:      {sys.path}')
