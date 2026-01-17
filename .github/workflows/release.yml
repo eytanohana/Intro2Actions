@@ -9,8 +9,6 @@ env:
   UV_VERSION: "latest"
 
 jobs:
-  run-ci:
-    name: Run CI Tests
 
   build-and-publish:
     name: Build and Publish Package
