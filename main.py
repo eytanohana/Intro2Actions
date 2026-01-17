@@ -58,6 +58,10 @@ def minus_three(a):
     return a - 3
 
 
+def minus_four(a):
+    return a - 4
+
+
 if __name__ == "__main__":
     print(f'System path is:      {sys.path}')
     print(f'Python version is:   {sys.version}')
