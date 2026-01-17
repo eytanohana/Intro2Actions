@@ -1,0 +1,43 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - "v*.*.*"   # runs only on tags like v0.1.0
+
+env:
+  UV_VERSION: "latest"
+
+jobs:
+  run-ci:
+    name: Run CI Tests
+
+  build-and-publish:
+    name: Build and Publish Package
+    runs-on: ubuntu-latest
+
+    permissions:
+      id-token: write
+      contents: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@93cb6efe18208431cddfb8368fd83d5badbf9bfd  # v5
+
+      - name: Set up uv and Python
+        uses: astral-sh/setup-uv@681c641aba71e4a1c380be3ab5e12ad51f415867  # v7
+        with:
+          enable-cache: true
+          version: ${{ env.UV_VERSION }}
+
+      - name: Build package (wheel and sdist)
+        run: uv build
+
+      - name: Create GitHub Release
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          tag: ${{ github.ref_name }}
+        run: |
+          gh release create "$tag" \
+            --notes $'## Release Notes\nReleased on '"$(date -u +%Y-%m-%d)"$'\n\n' \
+            --generate-notes
