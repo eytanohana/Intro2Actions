@@ -3,7 +3,7 @@ name: uv release tools
 on:
   pull_request:
     branches: [ "main" ]
-    types: [opened, synchronize, labeled, unlabeled, closed]
+    types: [labeled, unlabeled]
 
 jobs:
   release:
